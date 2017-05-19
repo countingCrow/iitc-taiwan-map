@@ -2,9 +2,9 @@
 // @id             iitc-plugin-show-crow-taiwan-map@crow
 // @name           IITC Plugin: show crow taiwan map
 // @category       Map Tiles
-// @version        0.1.1
+// @version        0.1.2
 // @namespace      https://www.crow.tw/
-// @description    [0.1.1][20170520] 1895-1956 taiwan map
+// @description    [0.1.2][20170520] 1895-1956 taiwan map
 // @include        https://www.ingress.com/intel*
 // @match          https://www.ingress.com/intel*
 // @grant          none
@@ -15,6 +15,7 @@
 // =============================================================================================== //
 
 // Center for GIS, RCHSS, Academia Sinica
+// http://gis.rchss.sinica.edu.tw/
 // http://gissrv4.sinica.edu.tw/gis/twhgis.aspx
 
 // do not use additional closure wrapper, it will break this plugin on mobile iitc..
@@ -197,10 +198,9 @@ function wrapper() {
       }
     };
 
-    add_open_street_map();
     $.each(map_list, function (map_code, data) {
       var map_url;
-      var map_atb = 'Map data © <a href="http://ndaip.sinica.edu.tw/content.jsp?option_id=2621&index_info_id=6924">Center for GIS, RCHSS, Academia Sinica</a>';
+      var map_atb = 'Map data © <a href="http://gis.rchss.sinica.edu.tw/">Center for GIS, RCHSS, Academia Sinica</a>';
       var map_option = {
         attribution : map_atb,
         crossOrigin : true,
@@ -249,12 +249,6 @@ function wrapper() {
         hex = '0' + hex;
       }
       return hex;
-    }
-    function add_open_street_map() {
-      var map_url = '//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-      var map_atb = 'Map data © <a href="//openstreetmap.org" target="_blank">OpenStreetMap</a> contributors';
-      var open_street_map = new L.TileLayer(map_url, {minZoom: 3, maxNativeZoom: 18, maxZoom: 21, attribution: map_atb});
-      layerChooser.addBaseLayer(open_street_map, 'OpenStreetMap');
     }
   };
 
