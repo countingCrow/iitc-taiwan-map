@@ -2,9 +2,9 @@
 // @id             iitc-plugin-show-crow-taiwan-map@crow
 // @name           IITC Plugin: show crow taiwan map
 // @category       Map Tiles
-// @version        0.1.2
+// @version        0.1.3
 // @namespace      https://www.crow.tw/
-// @description    [0.1.2][20170520] 1895-1956 taiwan map
+// @description    [0.1.3][20180610] 1895-1974 taiwan map
 // @include        https://www.ingress.com/intel*
 // @match          https://www.ingress.com/intel*
 // @grant          none
@@ -175,13 +175,6 @@ function wrapper() {
         title     : '1944 - 美軍五萬分之一地形圖',
         type      : 'png'
       },
-      Taipei_aerialphoto_1945 : {
-        kind      : 'g',
-        max_zoom  : 17,
-        min_zoom  : 10,
-        title     : '1945 - 美軍航照影像 (1945/6/17)',
-        type      : 'jpg'
-      },
       AMCityPlan_1945 : {
         kind      : 'g',
         max_zoom  : 17,
@@ -195,9 +188,99 @@ function wrapper() {
         min_zoom  : 7,
         title     : '1956 - 臺灣五萬分之一地形圖圖幅接合表',
         type      : 'png'
+      },
+      Taipei_aerialphoto_1944 : {
+        kind      : 'gb',
+        max_zoom  : 19,
+        min_zoom  : 7,
+        title     : '1944 - 美軍航照影像',
+        type      : 'png'
+      },
+      Taipei_aerialphoto_1945 : {
+        kind      : 'g',
+        max_zoom  : 19,
+        min_zoom  : 10,
+        title     : '1945 - 美軍航照影像 (1945/6/17)',
+        type      : 'jpg'
+      },
+/*      Taipei_aerialphoto_1945 : {
+        kind      : 'gb',
+        max_zoom  : 19,
+        min_zoom  : 7,
+        title     : '1945 - 美軍航照影像 (1945/06/17)',
+        type      : 'jpg'
+      },*/
+      Taipei_aerialphoto_194504 : {
+        kind      : 'gs',
+        max_zoom  : 19,
+        min_zoom  : 7,
+        title     : '1945 - 美軍航照影像 (1945/04/01)',
+        type      : 'png'
+      },
+      Taipei_aerialphoto_1947_ac : {
+        kind      : 'gs',
+        max_zoom  : 19,
+        min_zoom  : 7,
+        title     : '1947 - 美軍航照影像',
+        type      : 'png'
+      },
+      Taipei_aerialphoto_1948 : {
+        kind      : 'gs',
+        max_zoom  : 19,
+        min_zoom  : 7,
+        title     : '1948 - 美軍航照影像',
+        type      : 'png'
+      },
+      Taipei_aerialphoto_1956 : {
+        kind      : 'gs',
+        max_zoom  : 19,
+        min_zoom  : 7,
+        title     : '1956 - 臺北市舊航照影像',
+        type      : 'png'
+      },
+      Taipei_aerialphoto_1957 : {
+        kind      : 'gb',
+        max_zoom  : 19,
+        min_zoom  : 7,
+        title     : '1957 - 臺北市舊航照影像',
+        type      : 'png'
+      },
+      Taipei_aerialphoto_1963 : {
+        kind      : 'gs',
+        max_zoom  : 19,
+        min_zoom  : 7,
+        title     : '1963 - 臺北市舊航照影像',
+        type      : 'png'
+      },
+      Taipei_aerialphoto_1965 : {
+        kind      : 'gs',
+        max_zoom  : 19,
+        min_zoom  : 7,
+        title     : '1965 - 臺北市舊航照影像',
+        type      : 'png'
+      },
+      Taipei_aerialphoto_1974 : {
+        kind      : 'gb',
+        max_zoom  : 19,
+        min_zoom  : 7,
+        title     : '1974 - 臺北市舊航照影像',
+        type      : 'jpg'
+      },
+      TaipeiTamsui_1947 : {
+        kind      : 'gss',
+        max_zoom  : 19,
+        min_zoom  : 7,
+        title     : '1947 - 台北和淡水航照影像',
+        type      : 'png'
+      },
+      Taipei_1966 : {
+        kind      : 'gb',
+        max_zoom  : 19,
+        min_zoom  : 7,
+        title     : '1966 - 臺北市市郊地形圖',
+        type      : 'jpg'
       }
     };
-
     $.each(map_list, function (map_code, data) {
       var map_url;
       var map_atb = 'Map data © <a href="http://gis.rchss.sinica.edu.tw/">Center for GIS, RCHSS, Academia Sinica</a>';
@@ -230,6 +313,10 @@ function wrapper() {
         // instead of decimal xy number, this kind use hex value with zero fill left padding
         case 'gs':
           map_url = 'http://gis.sinica.edu.tw/googlemap/{crow_name}/Layers/_alllayers/L{z}/R{hy}/C{hx}.{crow_type}';
+          break;
+        // sub type of 'gs' that lack 'Layers' in path
+        case 'gss':
+          map_url = 'http://gis.sinica.edu.tw/googlemap/{crow_name}/_alllayers/L{z}/R{hy}/C{hx}.{crow_type}';
           break;
         // if could, we should avoid this kind; seem that browser will not use cache
         case 't':
